@@ -1,60 +1,82 @@
 # EECS486 Final Project
 
 ## Overview
-In this project, we propose a machine‑learning framework to predict social media addiction levels (low, moderate, high)  using behavioral and self‑reported features. The implementation includes baseline and improved pipelines, advanced ensembling, and visualizations.
+In this project, we propose a machine learning framework to predict social media addiction levels (low, moderate, high) using behavioral and self-reported features. The implementation includes baseline and improved pipelines, advanced ensembling strategies, and visualization utilities.
 
 ## Paper Reference
-This is the code submission for our paper.
+This repository contains the code submitted alongside our final report for EECS 486.
 
 ## Features
-- **Baseline Random Forest** with stratified 80/20 split, classification report, macro‑AUROC, and diagnostic plots.
-- **Hyperparameter‑tuned Gradient Boosting** (HistGradientBoostingClassifier) with SMOTENC oversampling under `RandomizedSearchCV` 
+- **Baseline Random Forest** with stratified 80/20 split, classification report, macro‑AUROC, and diagnostic plots
+- **Hyperparameter‑tuned Gradient Boosting** (`HistGradientBoostingClassifier`) with `SMOTENC` oversampling via `RandomizedSearchCV`
 - **Cost‑Sensitive Stacking Ensemble** combining Random Forest and Logistic Regression for high‑risk user detection
-- **Visualization utilities** for distribution charts, correlation heatmaps, polar plots, and pipeline flowchart
+- **Visualization tools** including distribution plots, correlation heatmaps, polar charts, and a model pipeline diagram
 
 ## Installation
 
 ### Prerequisites
-- Python 3.13.2  
-- [Graphviz](https://graphviz.org/) (for generating flowcharts)
+- Python 3.6 or higher [Recommended: Python 3.13.2]
+- [Graphviz](https://graphviz.org/) installed system-wide for rendering pipeline flowcharts:
+  - **Ubuntu**: `sudo apt-get install graphviz`
+  - **macOS**: `brew install graphviz`
 
-### Python packages
+### Install Python Dependencies
+To install all required Python packages, run:
+
 ```bash
-pip install pandas numpy scikit-learn imbalanced-learn category_encoders matplotlib graphviz
+pip install --user -r requirements.txt
+```
+
+Or, using a virtual environment (recommended):
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
 ## Repository Structure
+
+```
 .
 ├── baseline_model.py
 ├── models_improved.py
 ├── visualize.py
+├── requirements.txt
 ├── data/
 │   └── social_media_dataset.csv
 ├── plots/
 ├── results/
 └── 486_Final_Report.pdf
+```
 
 ## Usage
-1. **Run baseline model**: 
-    - Prints classification report & macro‑AUROC
-    - Saves productivity‑loss bar chart, confusion matrix, ROC curve under plots/
-    ```bash
-     python baseline_model.py
-    ```
-2. **Run improved model**
-    - Prints CV logs
-    - Prints GBDT & stacking performance
-    - Saves confusion matrices under plots/
-    ```bash
-    python models_improved.py
-    ```    
-3. **generate visualization of datasets**
-    - Plots `ProdutivityLoss` Distribution, 
-    - Plots correlation heatmap, 
-    - Plots polar chart for `AdditionLevel`
-    - Plots pipeline flowchart
-    ```bash
-    python visualize.py
-    ```
+
+### 1. Run Baseline Model
+Prints classification report and macro‑AUROC.  
+Saves productivity-loss bar chart, confusion matrix, and ROC curve to `plots/`.
+
+```bash
+python baseline_model.py
+```
+
+### 2. Run Improved Model
+Prints CV logs and stacking performance.  
+Saves confusion matrices to `plots/`.
+
+```bash
+python models_improved.py
+```
+
+### 3. Run Visualizations
+- Plots distribution of `ProductivityLoss`
+- Plots correlation heatmap
+- Plots polar chart for `AddictionLevel`
+- Generates pipeline flowchart using `graphviz`
+
+```bash
+python visualize.py
+```
+
 ## Acknowledgments
 We gratefully acknowledge the authors and maintainers of the [Time Wasters on Social Media dataset](https://www.kaggle.com/datasets/muhammadroshaanriaz/time-wasters-on-social-media?resource=download) for sharing their synthetic user survey on Kaggle.
